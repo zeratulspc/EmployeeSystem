@@ -255,20 +255,48 @@ class EmployeeManager {
             }
             else -> {}
         }
-        println("부서 총 월급 : ${salary/departmentEmployeeCount}")
+        println("부서 평균 월급 : ${salary/departmentEmployeeCount}")
     }
 
     private fun makeRandomData() {
-        /*
-        직원 타입
-        이름
-        UUID
-        부서
-        월급
-         */
         println("생성할 랜덤 데이터 갯수를 입력해주세요")
         for(i in 0..readLine()!!.toInt()) {
-
+            val name = DataPile().randomName()
+            var department : Department = DevDepartment()
+            when((1..4).random()) {
+                1 -> department = DevDepartment()
+                2 -> department = SalesDepartment()
+                3 -> department = CsDepartment()
+                4 -> department = OfficeDepartment()
+                else -> {}
+            }
+            val uuid : UUID = UUID.randomUUID()
+            //10,000,000 ~ 100,000,000
+            var employee : Employee = NormalEmployee(name, uuid, department,0)
+            when((1..4).random()) {
+                1 -> {
+                    //월급
+                    val salary : Long = (10000000..100000000).random().toLong()
+                    employee = NormalEmployee(name,uuid,department,salary)
+                }
+                2 -> {
+                    //연봉
+                    val salary : Long = (10000000..100000000).random().toLong()
+                    employee = FullTimeEmployee(name,uuid,department,salary)
+                }
+                3 -> {
+                    //시급
+                    val salary : Long = (10000..100000).random().toLong()
+                    employee = PartTimeEmployee(name,uuid,department,salary)
+                }
+                4 -> {
+                    //월급
+                    val salary : Long = (10000000..100000000).random().toLong()
+                    employee = SalesEmployee(name,uuid,department,salary)
+                }
+                else -> {}
+            }
+            employees.add(employee)
         }
     }
 }
