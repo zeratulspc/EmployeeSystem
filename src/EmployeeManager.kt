@@ -26,7 +26,7 @@ class EmployeeManager {
             println("5: 사원 평균 월급 조회")
             println("6: 부서 총 월급 조회")
             println("7: 부서 평균 월급 조회")
-            println("8: 랜덤 데이터 만들기")
+            println("8: 랜덤 데이터 만들기(미구현)")
             println("9: 종료")
             when(readLine()!!.toInt()) {
                 1->addEmployee()
