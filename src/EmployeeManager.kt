@@ -14,6 +14,12 @@ import java.util.*
 class EmployeeManager {
     private val employees : MutableList<Employee> = mutableListOf()
 
+    companion object {
+        fun getRandomUUID():UUID {
+            return UUID.randomUUID()
+        }
+    }
+
     fun managerInit() {
         println("=====사원관리 시스템=====")
         println()
@@ -26,7 +32,7 @@ class EmployeeManager {
             println("5: 사원 평균 월급 조회")
             println("6: 부서 총 월급 조회")
             println("7: 부서 평균 월급 조회")
-            println("8: 랜덤 데이터 만들기(미구현)")
+            println("8: 랜덤 데이터 만들기")
             println("9: 종료")
             when(readLine()!!.toInt()) {
                 1->addEmployee()
@@ -49,7 +55,7 @@ class EmployeeManager {
         println("추가할 사원의 이름을 입력해주세요")
         val name: String = readLine()!!
         //사원 UUID
-        val uuid = UUID.randomUUID()
+        val uuid = getRandomUUID()
         //사원 부서
         println("추가할 사원의 부서를 입력해주세요")
         println("1: 개발팀")
@@ -260,7 +266,7 @@ class EmployeeManager {
 
     private fun makeRandomData() {
         println("생성할 랜덤 데이터 갯수를 입력해주세요")
-        for(i in 0..readLine()!!.toInt()) {
+        for(i in 1..readLine()!!.toInt()) {
             val name = DataPile().randomName()
             var department : Department = DevDepartment()
             when((1..4).random()) {
@@ -270,7 +276,7 @@ class EmployeeManager {
                 4 -> department = OfficeDepartment()
                 else -> {}
             }
-            val uuid : UUID = UUID.randomUUID()
+            val uuid : UUID = getRandomUUID()
             //10,000,000 ~ 100,000,000
             var employee : Employee = NormalEmployee(name, uuid, department,0)
             when((1..4).random()) {
