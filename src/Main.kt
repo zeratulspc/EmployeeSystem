@@ -1,7 +1,6 @@
-import java.util.*
 
 fun main() {
-    val empManager:EmployeeManager = EmployeeManager()
+    val empManager = EmployeeManager()
 
     empManager.managerInit()
 }
