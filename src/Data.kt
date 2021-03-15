@@ -31,6 +31,6 @@ class DataPile {
             "문혁",
             "지호",
             )
-        return nameArray[(0..20).random()]
+        return nameArray[(nameArray.indices).random()]
     }
 }
